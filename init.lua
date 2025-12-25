@@ -77,13 +77,13 @@ local mrp = 'https://raw.githubusercontent.com/LARTAJE/CompactSmartBone/refs/hea
 local Config = Require(mrp..'/Dependencies/Config.lua')
 
 local UnitConversion = Require(mrp..'/Dependencies/UnitConversion.lua')
-local DefaultSettings = Require(mrp..'/Dependencies/DefaultSettings')
+local DefaultSettings = Require(mrp..'/Dependencies/DefaultSettings.lua')
 
-local ParticleTree = Require(mrp..'/Components/ParticleTree')
-local Particle = Require(mrp..'/Components/Particle')
+local ParticleTree = Require(mrp..'/Components/ParticleTree.lua')
+local Particle = Require(mrp..'/Components/Particle.lua')
 
-local SettingsMath = Require(mrp..'/Dependencies/SettingsMath')
-local Utilities = Require(mrp..'/Dependencies/Utilities')
+local SettingsMath = Require(mrp..'/Dependencies/SettingsMath.lua')
+local Utilities = Require(mrp..'/Dependencies/Utilities.lua')
 
 local ID_SEED = 12098135901304
 local ID_RANDOM = Random.new(ID_SEED)
