@@ -543,6 +543,7 @@ function module.Start()
 					ActorModule.Stop()
 					SmartBones[Object] = nil
 					SmartBoneActor:Destroy()
+					print('TERMINATED BONE CONN')
 				end)
 
 				table.insert(IgnoreList, Object)
@@ -569,7 +570,9 @@ function module.Start()
 				SmartBones[Object].SimulationConnection:Disconnect()
 
 				task.wait()
-
+				
+				SmartBones[Object].Removed = true
+				SmartBones[Object].RemovedEvent:Fire()
 				SmartBones[Object].RemovedEvent:Destroy()
 
 				for _, particleTree: particleTree in ipairs(SmartBones[Object].ParticleTrees) do
@@ -585,9 +588,6 @@ function module.Start()
 				if CurrentControllers[SmartBones[Object].ID] then
 					CurrentControllers[SmartBones[Object].ID] = nil
 				end
-
-				SmartBones[Object].Removed = true
-				SmartBones[Object].RemovedEvent:Fire()
 
 				SmartBones[Object] = nil
 			end)
