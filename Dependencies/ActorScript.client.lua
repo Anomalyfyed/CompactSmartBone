@@ -1,3 +1,12 @@
+print('--// RAN ACTOR SCRIPT //--')
+
+
+
+
+
+
+
+
 -- // Types \\ --
 
 type dictionary = { [string]: any }
