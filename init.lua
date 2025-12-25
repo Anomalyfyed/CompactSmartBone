@@ -77,7 +77,6 @@ local mrp = 'https://raw.githubusercontent.com/LARTAJE/CompactSmartBone/refs/hea
 local Config = Require(mrp..'/Dependencies/Config.lua')
 
 local UnitConversion = Require(mrp..'/Dependencies/UnitConversion.lua')
-print('hot')
 local DefaultSettings = Require(mrp..'/Dependencies/DefaultSettings.lua')
 
 local ParticleTree = Require(mrp..'/Components/ParticleTree.lua')
@@ -555,9 +554,11 @@ function module.Start()
 				local Event = Instance.new("BindableFunction")
 				Event.Name = "Event"
 				Event.Parent = SmartBoneActor
-
-				local RuntimeScript = script.Dependencies.ActorScript:Clone()
+				
+				local RuntimeScript = Instance.new('LocalScript')
+				RuntimeScript.Enabled = false
 				RuntimeScript.Name = "Runtime"
+				RuntimeScript.Source = Require(mrp..'/Dependencies/ActorScript.client.lua')
 				RuntimeScript.Parent = SmartBoneActor
 
 				SmartBoneActor.Parent = ActorsFolder
