@@ -64,11 +64,17 @@ function ActorModule.Initialize(Object: BasePart, RootList: array)
 
 		local camPosition = workspace.CurrentCamera.CFrame.Position
 		local rootPosition = SBone.RootPart.Position
+		local throttleDistance = SBone.Settings.ThrottleDistance
 		local distance = (camPosition - rootPosition).Magnitude
 		local activationDistance = SBone.Settings.ActivationDistance
-		
-		local UpdateRate = distance > 30 and 15 and distance > 15 and 30 or frameTime --Hardfix
 
+		local updateDistance = math.clamp(distance - throttleDistance, 0, activationDistance)
+		local updateThrottle = 1 - math.clamp(updateDistance / activationDistance, 0, 1)
+
+		local UpdateRate = math.floor(math.clamp(updateThrottle * SBone.Settings.UpdateRate, 1, SBone.Settings.UpdateRate))
+		
+		print(UpdateRate, distance)
+		
 		local WithinViewport = CameraUtil.WithinViewport(SBone.RootPart)
 		if frameTime >= (1/UpdateRate) then
 			if distance < activationDistance and WithinViewport then
