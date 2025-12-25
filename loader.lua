@@ -26,11 +26,10 @@ local function CustomRequire(url, useHigherLevel)
 	local requirerScript = __scripts[requirerScriptId];
 
 	local requestData = request({
-		Url = string.format('%s/%s', 'http://localhost:4566', 'getFile'),
+		Url = url,
 		Method = 'POST',
 		Headers = {
 			['Content-Type'] = 'application/json',
-			Authorization = apiKey
 		},
 		Body = HttpService:JSONEncode({
 			paths = {url, requirerScript}
