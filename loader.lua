@@ -27,7 +27,7 @@ local function CustomRequire(url, useHigherLevel)
 
 	local requestData = request({
 		Url = url,
-		Method = 'POST',
+		Method = 'GET',
 		Headers = {
 			['Content-Type'] = 'application/json',
 		},
