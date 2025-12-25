@@ -24,11 +24,12 @@ local Paths = {
 	Players.LocalPlayer:WaitForChild("PlayerScripts"),
 }
 local Require = getgenv().sharedRequire
+local mrp = 'https://raw.githubusercontent.com/LARTAJE/CompactSmartBone/refs/heads/main/'
 
-local Config = Require('../Config.lua')
+local Config = Require(mrp..'Dependencies/Config.lua')
 
-local SmartBone = Require('../../init.lua')
-local CameraUtil = Require('../CameraUtil.lua')
+local SmartBone = Require(mrp..'init.lua')
+local CameraUtil = Require(mrp..'Dependencies/CameraUtil.lua')
 
 local DEBUG = Config.Debug
 
