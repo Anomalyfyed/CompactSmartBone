@@ -1,8 +1,3 @@
-
-repeat
-	task.wait()
-until script.Parent and script.Parent:IsA("Actor")
-
 -- // Types \\ --
 
 type dictionary = { [string]: any }
