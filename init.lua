@@ -562,7 +562,7 @@ function module.Start()
 	local function removeSmartBoneObject(Object: BasePart)
 		if SmartBones[Object] then
 			DebugPrint("Removing SmartBone Object with ID: " .. SmartBones[Object].ID)
-			print(`REMOVING INSTANCE`, Object)
+			print(`REMOVING INSTANCE 1`, Object)
 			task.spawn(function()
 				for _, Connection in pairs(SmartBones[Object].Connections) do
 					Connection:Disconnect()
@@ -570,19 +570,21 @@ function module.Start()
 
 				SmartBones[Object].SimulationConnection:Disconnect()
 				
+				SmartBones[Object].Removed = true
+				
 				task.wait()
 				
 				if CurrentControllers[SmartBones[Object].ID] then
 					CurrentControllers[SmartBones[Object].ID] = nil
 				end
+				
+				SmartBones[Object].RemovedEvent:Fire()
+				SmartBones[Object].RemovedEvent:Destroy()
 
 				SmartBones[Object] = nil
 
 				task.wait()
 				
-				SmartBones[Object].Removed = true
-				SmartBones[Object].RemovedEvent:Fire()
-				SmartBones[Object].RemovedEvent:Destroy()
 
 				for _, particleTree: particleTree in ipairs(SmartBones[Object].ParticleTrees) do
 					for _, _Particle in particleTree.Particles do
