@@ -1,6 +1,8 @@
 --[[ SmartBone Version 0.1.2 by Celnak ]] --
 
 -- // Types \\ --
+print('--// COMPACT SMART BONE INIT //--')
+
 type func = () -> ()
 type dictionary = { [string]: any }
 type array = { [number]: any }
@@ -90,22 +92,8 @@ local SmartBoneTags = CollectionService:GetTagged("SmartBone")
 
 -- // Debug \\ --
 
-local DEBUG = Config.Debug
+local DEBUG = true
 local DEBUG_FOLDER, DEBUG_HIGHLIGHT
-
-if DEBUG then
-	DEBUG_FOLDER = Instance.new("Model")
-	DEBUG_FOLDER.Name = "SMARTBONE_DEBUGFOLDER"
-	DEBUG_FOLDER.Parent = workspace
-
-	DEBUG_HIGHLIGHT = Instance.new("Highlight")
-	DEBUG_HIGHLIGHT.FillColor = Color3.fromRGB(255, 0, 0)
-	DEBUG_HIGHLIGHT.OutlineTransparency = 1
-	DEBUG_HIGHLIGHT.FillTransparency = 0
-	DEBUG_HIGHLIGHT.Parent = DEBUG_FOLDER
-	DEBUG_HIGHLIGHT.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
-	DEBUG_HIGHLIGHT.Enabled = true
-end
 
 -- // Module \\ --
 
@@ -193,17 +181,7 @@ function module:AppendParticles(particleTree: dictionary, Bone: Bone, ParentInde
 	particle.ParentIndex = ParentIndex
 	particle.BoneLength = BoneLength
 	particle.HeirarchyLength = 0
-	if DEBUG == true then
-		particle.DebugPart = Instance.new("Part")
-		particle.DebugPart.Size = Vector3.new(.1,.1,.1)
-		particle.DebugPart.Anchored = true
-		particle.DebugPart.CanCollide = false
-		particle.DebugPart.CastShadow = false
-		particle.DebugPart.CanTouch = false
-		particle.DebugPart.CanQuery = false
-		particle.DebugPart.Color = Color3.fromRGB(255,0,0)
-		particle.DebugPart.Parent = DEBUG_FOLDER
-	end
+	
 	if ParentIndex >= 1 then
 		BoneLength = (particleTree.Particles[ParentIndex].Bone.WorldPosition - particle.Position).Magnitude
 		particle.BoneLength = BoneLength
@@ -563,6 +541,7 @@ function module.Start()
 
 				SmartBones[Object].RemovedEvent.Event:Once(function()
 					ActorModule.Stop()
+					SmartBones[Object] = nil
 					SmartBoneActor:Destroy()
 				end)
 
