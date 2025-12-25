@@ -1,6 +1,7 @@
 --[[ SmartBone Version 0.1.2 by Celnak ]] --
 
 -- // Types \\ --
+print('--// COMPACT SMART BONE INIT //--')
 
 type func = () -> ()
 type dictionary = { [string]: any }
@@ -71,17 +72,18 @@ local ZERO = Vector3.zero
 
 -- // Dependencies \\ --
 local Require = getgenv().sharedRequire
+local mrp = 'https://raw.githubusercontent.com/LARTAJE/CompactSmartBone/refs/heads/main'
 
-local Config = Require('../Dependencies/Config.lua')
+local Config = Require(mrp..'/Dependencies/Config.lua')
 
-local UnitConversion = Require('../Dependencies/UnitConversion.lua')
-local DefaultSettings = Require('../Dependencies/DefaultSettings')
+local UnitConversion = Require(mrp..'/Dependencies/UnitConversion.lua')
+local DefaultSettings = Require(mrp..'/Dependencies/DefaultSettings')
 
-local ParticleTree = Require('../Components/ParticleTree')
-local Particle = Require('../Components/Particle')
+local ParticleTree = Require(mrp..'/Components/ParticleTree')
+local Particle = Require(mrp..'/Components/Particle')
 
-local SettingsMath = Require('../Dependencies/SettingsMath')
-local Utilities = Require('../Dependencies/Utilities')
+local SettingsMath = Require(mrp..'/Dependencies/SettingsMath')
+local Utilities = Require(mrp..'/Dependencies/Utilities')
 
 local ID_SEED = 12098135901304
 local ID_RANDOM = Random.new(ID_SEED)
