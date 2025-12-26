@@ -20,7 +20,7 @@ local Paths = {
 	Players.LocalPlayer:WaitForChild("PlayerScripts"),
 }
 local Require = getgenv().sharedRequire
-local mrp = 'https://raw.githubusercontent.com/LARTAJE/CompactSmartBone/refs/heads/main/'
+local mrp = 'https://raw.githubusercontent.com/Anomalyfyed/CompactSmartBone/refs/heads/main/'
 
 local Config = Require(mrp..'Dependencies/Config.lua')
 
