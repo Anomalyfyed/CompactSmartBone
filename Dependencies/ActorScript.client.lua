@@ -61,7 +61,7 @@ function ActorModule.Initialize(Object: BasePart, RootList: array)
 
 	local frameTime = 0
 	Connection = RunService.PostSimulation:Connect(function(Delta: number)
-		Delta = smoothDelta()
+		--Delta = smoothDelta()
 		frameTime += Delta
 
 		local camPosition = workspace.CurrentCamera.CFrame.Position
@@ -76,7 +76,6 @@ function ActorModule.Initialize(Object: BasePart, RootList: array)
 		local UpdateRate = math.floor(math.clamp(updateThrottle * SBone.Settings.UpdateRate, 1, SBone.Settings.UpdateRate))
 
 		print(UpdateRate, distance)
-		warn(frameTime, 1/UpdateRate)
 
 		local WithinViewport = CameraUtil.WithinViewport(SBone.RootPart)
 		if frameTime >= (1/UpdateRate) then
