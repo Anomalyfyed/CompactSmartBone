@@ -74,10 +74,11 @@ function ActorModule.Initialize(Object: BasePart, RootList: array)
 		local updateThrottle = 1 - math.clamp(updateDistance / activationDistance, 0, 1)
 
 		local UpdateRate = math.floor(math.clamp(updateThrottle * SBone.Settings.UpdateRate, 1, SBone.Settings.UpdateRate))
-		
+
 		print(UpdateRate, distance)
-		
+
 		local WithinViewport = CameraUtil.WithinViewport(SBone.RootPart)
+		warn(frameTime, 1/UpdateRate)
 		if frameTime >= (1/UpdateRate) then
 			if distance < activationDistance and WithinViewport then
 				Delta = frameTime
